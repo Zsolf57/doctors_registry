@@ -1,0 +1,9 @@
+<span><div class="card-body" style="align-self: center; flex: auto; margin: auto">
+    Search:
+    <input type='text'
+         [(ngModel)]='listFilter' />
+</div></span>
+<div class="cards-list">
+    <app-practitioner *ngFor="let prac of filteredPracs;" [practitioner]="prac"></app-practitioner>
+    
+</div>

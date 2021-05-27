@@ -1,0 +1,23 @@
+<div class="card text-white bg-info mb-3" style="width: 18rem;">
+    <img class="card-img-top" [src]="practitioner.photo" alt="Card image cap">
+    <div class="card-body" [style.backgroundColor]="practitioner.active == true ? 'cyanblue' : 'crimson'">
+      <h5 class="card-header" style="font-size: large;">{{practitioner.name}}</h5>
+      <p class="card-text">Birth Date: {{practitioner.birthDate | transformDate : practitioner.birthDate}}</p>
+      <p class="card-text" > Currently active: 
+      <svg *ngIf=practitioner.active xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+      </svg>
+      <svg *ngIf="practitioner.active==false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+      </svg>
+        </p>
+      <p class="card-text">Gender: {{practitioner.gender}}</p>
+      <p class="card-text" >Phone number: {{practitioner.telecom}}</p>
+      <p class="card-text" >Address: {{practitioner.address}}</p>
+      <p class="card-text">Languages: {{practitioner.communication}}</p>
+
+      <a href="#" routerLink="/doctor/{{practitioner.id}}" mat-raised-button color="secondary" style="margin-right: 1%;" >Edit</a>
+      <a href="/list" routerLink="/list" (click)="deleteDoctor(practitioner.id)" mat-raised-button color="warn">Delete</a>
+      
+    </div>
+  </div>

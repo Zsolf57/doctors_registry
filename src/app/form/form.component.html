@@ -1,0 +1,74 @@
+<form [formGroup]="form" class="center" (ngSubmit)="onSubmit()" >
+<mat-form-field class="elem" >
+    <mat-label>Name</mat-label>
+    <input matInput focus formControlName="name" required>
+  </mat-form-field>
+  <mat-form-field class="elem">
+    <mat-label>Currently working</mat-label>
+    <mat-select formControlName="active">
+      <mat-option [value]=true>True</mat-option>
+      <mat-option [value]=false>False</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field  class="elem">
+    <mat-label>Telephone</mat-label>
+    <input matInput formControlName="telecom" >
+  </mat-form-field>
+
+  <mat-form-field class="elem">
+    <mat-label>Address</mat-label>
+    <input matInput formControlName="address">
+  </mat-form-field>
+
+  <mat-form-field class="elem" >
+    <mat-label>Gender</mat-label>
+    <mat-select formControlName="gender">
+      <mat-option value="Male">Male</mat-option>
+      <mat-option value="Female">Female</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <mat-form-field class="elem">
+    <mat-label>Choose a date</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="birthDate" required >
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field class="elem">
+    <mat-label>Communication</mat-label>
+    <mat-chip-list #chipList aria-label="Language selection" 
+    formControlName="communication">
+      <mat-chip *ngFor="let lang of form.get('communication').value" [selectable]="selectable"
+       [removable]="removable" (removed)="remove(lang)">
+          {{lang}}
+          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      </mat-chip>
+      <input placeholder="Nem language..."
+      [matChipInputFor]="chipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      [matChipInputAddOnBlur]="addOnBlur"
+      (matChipInputTokenEnd)="add($event)">
+    </mat-chip-list>
+  </mat-form-field>
+
+  <mat-form-field class="elem" >
+    <mat-label>Photo</mat-label>
+    <mat-select formControlName="photo">
+      <mat-option value="./assets/doc.jpg">
+        <img with="50" height="50" src="./assets/doc.jpg">
+        Male Doctor
+      </mat-option>
+      <mat-option value="./assets/docw.jpg">
+        <img with="50" height="50" src="./assets/docw.jpg">
+        Female Doctor
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div style="display: flex; justify-content: flex-end;">
+    <button mat-raised-button type="submit" color="primary" [disabled]=form.invalid>Save</button>
+</div>
+</form>
